@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row section">
+    <div class="col-md-12">
+      <div class="heading">
+        <h3>FOOTBALL UPDATES</h3>
+      </div>
+
+      <nav class="navbar navbar-expand navbar-dark bg-primary">
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li
+              class="nav-item active"
+              *ngFor="let leagueInfo of teamLeaguesList"
+            >
+              <a
+                class="nav-link"
+                (click)="getStandingsForSelectedCountry(leagueInfo)"
+                >{{ leagueInfo.country.name }}</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row section">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Games</th>
+            <th scope="col">W</th>
+            <th scope="col">L</th>
+            <th scope="col">D</th>
+            <th scope="col">Goal Difference</th>
+            <th scope="col">Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let standing of teamStandingInfo[0]?.league.standings?.[0]; index as i"
+          >
+            <th scope="row">{{ i + 1 }}</th>
+            <th scope="row">
+              <img class="icon" src="{{ standing.team.logo }}" width="40px" />
+            </th>
+            <td>{{ standing.team.name }}</td>
+            <td>{{ standing.all.played }}</td>
+            <td>{{ standing.all.win }}</td>
+            <td>{{ standing.all.lose }}</td>
+            <td>{{ standing.all.draw }}</td>
+            <td>{{ standing.all.goals.for - standing.all.goals.against }}</td>
+            <td>{{ standing.points }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
